@@ -4,8 +4,8 @@ How the repo is organized, where new code goes, and why. Numbers in the comments
 
 - **Stack:** Vite + React + TypeScript · Express + TypeScript · MongoDB (Mongoose) · Docker Compose · Netlify
 - **Layout:** one repo with npm workspaces: `client`, `server`, `shared`
-- **Lives at:** `docs/folder-structure.md`
-- **Updated:** Nov 17, 2026
+- **Lives at:** `docs/project-folder-structure.md`
+- **Updated:** Nov 18, 2026
 
 ## Contents
 
@@ -138,7 +138,7 @@ arasaka-construct-interface/
 │       └── api.ts                        # wraps server/src/app.ts (card 6)
 │
 ├── docs/
-│   ├── folder-structure.md               # this file
+│   ├── project-folder-structure.md       # this file
 │   ├── decisions.md                      # research card notes
 │   ├── api.http                          # saved API requests (card 10)
 │   ├── testing.md                        # manual test checks (cards 21, 27)
@@ -525,8 +525,12 @@ Run these from the repo root.
 One-time setup on each laptop:
 
 1. Install the Netlify CLI: `npm install -g netlify-cli`
-2. Run `netlify login`, then `netlify link` in the repo root to connect it to your Netlify site.
-3. Copy `.env.example` to `.env` and fill in the values.
+2. Copy `.env.example` to `.env` and fill in the values.
+3. Run `npm install`, then start MongoDB with `docker compose up -d mongo`.
+
+That's all `npm run dev` needs. It doesn't need a Netlify account, a site, `netlify login` or `netlify link`, because `netlify dev` runs from `netlify.toml` and your `.env`. Until card 6 adds `netlify.toml` and `netlify/functions/api.ts`, run the API and the client separately with `npm run dev -w server` and `npm run dev -w client`.
+
+> **Optional:** Once card 6 has created the site on Netlify, run `netlify login`, then `netlify link` in the repo root. Linking lets `netlify dev` also load the variables you set in the Netlify UI. If the CLI ever stalls trying to reach Netlify, `npm run dev -- --offline` turns off everything that needs a network connection.
 
 ## Naming conventions
 
@@ -560,12 +564,13 @@ The `<name>.<role>.ts` pattern means a search for "construct" finds every file f
 If card 1 already set up `client/` and `server/` as separate npm projects:
 
 1. Add the root `package.json` from [Root config files](#root-config-files).
-2. Create `shared/` with its `package.json`, a `tsconfig.json`, and `src/index.ts` (start it with `export {};` until it has real exports).
-3. Add `"@aci/shared": "*"` to the dependencies in `client/package.json` and `server/package.json`.
-4. Delete `client/package-lock.json`, `server/package-lock.json`, `client/node_modules/` and `server/node_modules/`.
-5. Run `npm install` at the root. You'll end up with one `package-lock.json` and one `node_modules/`.
-6. Put `netlify.toml` at the root. In Netlify's build settings, leave **Base directory** and **Package directory** empty so Netlify reads it; its settings override the ones in the UI.
-7. Check that `npm run dev` still works, then commit, for example `ACI-1 chore: switch to npm workspaces`.
+2. Give every workspace its own `name` in its `package.json`: `@aci/client`, `@aci/server` and `@aci/shared`. The root keeps `arasaka-construct-interface`. If two names match, `npm install` stops with `EDUPLICATEWORKSPACE`.
+3. Create `shared/` with its `package.json`, a `tsconfig.json`, and `src/index.ts` (start it with `export {};` until it has real exports).
+4. Add `"@aci/shared": "*"` to the dependencies in `client/package.json` and `server/package.json`.
+5. Delete `client/package-lock.json`, `server/package-lock.json`, `client/node_modules/` and `server/node_modules/`.
+6. Run `npm install` at the root. You'll end up with one `package-lock.json` and one `node_modules/`.
+7. Put `netlify.toml` at the root. In Netlify's build settings, leave **Base directory** and **Package directory** empty so Netlify reads it; its settings override the ones in the UI.
+8. Check that `npm run dev` still works, then commit, for example `ACI-1 chore: switch to npm workspaces`.
 
 ## References
 
