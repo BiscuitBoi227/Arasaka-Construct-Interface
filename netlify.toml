@@ -1,0 +1,27 @@
+[build]
+command = "npm run build -w client"
+publish = "client/dist"
+
+[functions]
+directory = "netlify/functions"
+external_node_modules = ["express"]
+node_bundler = "esbuild"
+
+[dev]
+framework = "#custom"
+command = "npm run dev -w client"
+targetPort = 5173
+port = 8888
+
+# /api/* → the Express function (card 6)
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/api/:splat"
+status = 200
+force = true
+
+# Everything else → the React app, so deep links like /constructs/abc work
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
