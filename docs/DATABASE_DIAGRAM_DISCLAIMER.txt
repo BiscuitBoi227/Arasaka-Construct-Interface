@@ -1,0 +1,5 @@
+We are using MongoDB and maybe Neo4j for our project,
+but due to the nature of a NoSql database like these, they're not very
+easy to properly make a diagram for. The diagram provided was made using
+a tool usually used for relational databases such as PostgreSQL, so the
+real schema will not be as rigid as shown in the diagram.
