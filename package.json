@@ -1,14 +1,22 @@
 {
   "name": "arasaka-construct-interface",
   "private": true,
-  "workspaces": ["client", "server", "shared"],
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
   "scripts": {
-    "dev": "netlify dev",
+    "predev": "node scripts/prepare-netlify-dev.mjs",
+    "dev": "netlify dev --filter @aci/client",
     "build": "npm run build -w client",
     "lint": "npm run lint --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "dependencies": {
     "serverless-http": "^4.0.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^6.1.1"
   }
 }
