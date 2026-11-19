@@ -11,6 +11,8 @@ function readPort(value: string | undefined, fallback: number): number {
 export const env = {
     port: readPort(process.env.PORT, 3001),
     nodeEnv: process.env.NODE_ENV ?? 'development',
+    // Optional here so /api/health still answers when it's missing; db/mongo.ts reports it.
+    mongoUri: process.env.MONGO_URI?.trim() || undefined,
 } as const;
 
 export const isProduction = env.nodeEnv === 'production';
