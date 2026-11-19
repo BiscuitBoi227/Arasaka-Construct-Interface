@@ -14,6 +14,9 @@ Needed to run the local database and full app, not the client alone:
 - Docker Desktop, for the local MongoDB
 - Netlify CLI (`npm install -g netlify-cli`), to run the client and API together
 
+## Demo Site
+https://arasaka-construct-interface.netlify.app/
+
 ## Getting started
 
 ```bash
