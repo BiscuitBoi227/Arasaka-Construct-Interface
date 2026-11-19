@@ -9,7 +9,7 @@ A Cyberpunk 2077–themed web app for viewing and managing Soulkiller personalit
 - [Node.js](https://nodejs.org/) 22.12 or newer (24 LTS recommended)
 - Git
 
-Needed later, not to run the client:
+Needed to run the local database and full app, not the client alone:
 
 - Docker Desktop, for the local MongoDB
 - Netlify CLI (`npm install -g netlify-cli`), to run the client and API together
@@ -25,7 +25,15 @@ npm run dev -w client
 
 Then open http://localhost:5173.
 
+The client currently opens to a dashboard skeleton with local preview records. Select a construct to see its details at a readable URL such as `/constructs/johnny-silverhand`. Visit an unknown path, such as `/missing`, to see the themed 404 page. Edit and Delete are visible placeholders until those features are connected.
+
 Always run `npm install` from the repo root, not inside `client/` or `server/`. One install sets up all three workspaces: `client`, `server` and `shared`.
+
+## Local MongoDB
+
+From the repo root, run `docker compose up -d mongo`. Compose creates the `mongo_data` named volume if it does not already exist and mounts it at `/data/db`. The database is available to local tools at `localhost:27017`, matching the `MONGO_URI` below.
+
+Run `docker compose down` to stop MongoDB. The named volume and its data remain in place for the next `docker compose up -d mongo`. Avoid `docker compose down -v` unless you intend to delete the local database.
 
 ## Environment variables
 
