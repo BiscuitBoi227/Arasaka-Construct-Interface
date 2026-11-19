@@ -1,0 +1,72 @@
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px max(24px, calc((100vw - 1380px) / 2));
+  border-bottom: 2px solid var(--color-brand);
+  background: var(--color-surface);
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+  width: fit-content;
+  text-decoration: none;
+}
+
+/* The supplied logo sits in the middle of a transparent canvas. */
+.logoCrop {
+  display: block;
+  width: min(290px, calc(100vw - 32px));
+  aspect-ratio: 1901 / 213;
+  overflow: hidden;
+}
+.logoCrop img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateY(-40.2%);
+}
+.brandSubtitle {
+  color: var(--color-text);
+  font: 10px var(--font-mono);
+  letter-spacing: .12em;
+}
+.previewStatus {
+  padding: 6px 9px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font: 11px var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+.main {
+  width: min(100%, 1380px);
+  margin: 0 auto;
+  padding: 44px 24px 64px;
+  flex: 1;
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 16px;
+  }
+  .main {
+    padding: 32px 16px 48px;
+  }
+}
+
+@media (max-width: 520px) {
+  .previewStatus {
+    display: none;
+  }
+}

@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'ACI Condensed';
+  src: url('../assets/fonts/DejaVuSansCondensed.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ACI Condensed';
+  src: url('../assets/fonts/DejaVuSansCondensed-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ACI Mono';
+  src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --color-bg: #1e080a;
+  --color-grid: rgb(230 0 0 / 9%);
+  --color-surface: #0c090a;
+  --color-surface-raised: #261114;
+  --color-border: #5e2529;
+  --color-text: #f4f4f4;
+  --color-muted: #aaa;
+  --color-brand: #e60000;
+  --color-accent: #f23641;
+  --color-accent-soft: #3e1115;
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'ACI Condensed', 'Arial Narrow', sans-serif;
+  --font-mono: 'ACI Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+}

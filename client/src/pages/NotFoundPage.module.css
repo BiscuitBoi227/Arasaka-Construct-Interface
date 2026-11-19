@@ -1,0 +1,31 @@
+.panel {
+  max-width: 680px;
+  margin: 8vh auto 0;
+  padding: clamp(28px, 6vw, 56px);
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-brand);
+  background: var(--color-surface);
+}
+.code {
+  margin: 0 0 12px;
+  color: var(--color-accent);
+  font: 14px var(--font-mono);
+}
+.panel h1 {
+  margin: 0 0 10px;
+  font: 700 clamp(36px, 6vw, 60px)/1.1 var(--font-display);
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+.homeLink {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 14px;
+}
+.homeLink:hover {
+  background: var(--color-accent-soft);
+}

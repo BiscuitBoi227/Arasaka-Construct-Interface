@@ -25,6 +25,8 @@ npm run dev -w client
 
 Then open http://localhost:5173.
 
+The client currently opens to a dashboard skeleton with local preview records. Select a construct to see its details at a readable URL such as `/constructs/johnny-silverhand`. Visit an unknown path, such as `/missing`, to see the themed 404 page. Edit and Delete are visible placeholders until those features are connected.
+
 Always run `npm install` from the repo root, not inside `client/` or `server/`. One install sets up all three workspaces: `client`, `server` and `shared`.
 
 ## Local MongoDB
