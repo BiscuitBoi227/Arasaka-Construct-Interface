@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import '../styles/App.css'
+import {DashboardPage} from '../pages/DashboardPage.tsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <DashboardPage/>
       <section id="center">
         <div className="hero">
         </div>
