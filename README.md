@@ -14,6 +14,10 @@ Needed to run the local database and full app, not the client alone:
 - Docker Desktop, for the local MongoDB
 - Netlify CLI (`npm install -g netlify-cli`), to run the client and API together
 
+## Demo Site
+
+https://arasaka-construct-interface.netlify.app/
+
 ## Getting started
 
 ```bash
@@ -37,6 +41,35 @@ available to local tools at `localhost:27017`, matching the `MONGO_URI` below.
 
 Run `docker compose down` to stop MongoDB. The named volume and its data remain in place for the next `docker compose up -d mongo`. Avoid `docker compose down -v` unless you
 intend to delete the local database.
+
+## Sample data
+
+`npm run seed` fills the database with 10 sample constructs covering clearance levels 1–3 and all four statuses. The records live in
+`server/src/scripts/seedConstructs.ts`. Run it again whenever you want a fresh set: it removes the old copies of the seeds (matched by `slug`)
+before inserting new ones, so it never creates duplicates. Constructs you created in the app are left alone.
+
+**Local database.** Start MongoDB, then seed it. The script reads `MONGO_URI` from the root `.env`:
+
+```bash
+docker compose up -d mongo
+npm run seed
+```
+
+**MongoDB Atlas.** Put the Atlas connection string in front of the command for that one run. A `MONGO_URI` set this way wins over the one in
+`.env`. Include the database name (`/aci`) in the string, or MongoDB writes to a database called `test`. Your IP address must be on the
+cluster's Network Access list.
+
+```bash
+# macOS, Linux, Git Bash
+MONGO_URI='mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/aci' npm run seed
+```
+
+```powershell
+# Windows PowerShell
+$env:MONGO_URI = 'mongodb+srv://USER:PASSWORD@CLUSTER.mongodb.net/aci'; npm run seed; Remove-Item Env:MONGO_URI
+```
+
+The first log line names the host and database it connected to, with the password hidden. A successful run ends with `[seed] Done`.
 
 ## Environment variables
 
@@ -68,6 +101,7 @@ Run these from the repo root.
 | `npm run dev -w client`           | Starts the client at http://localhost:5173                                                                                                       |
 | `npm run dev -w server`           | Starts the API on the `PORT` in `.env` (3001 if unset) and restarts it when you save a server file. Check it at http://localhost:3001/api/health |
 | `npm run dev`                     | Starts the client and API together at http://localhost:8888 (needs the Netlify CLI and the API)                                                  |
+| `npm run seed`                    | Replaces the sample constructs in the database `MONGO_URI` points at (see [Sample data](#sample-data))                                           |
 | `npm run build`                   | Builds the client into `client/dist`                                                                                                             |
 | `npm run lint`                    | Lints every workspace                                                                                                                            |
 | `npm install <package> -w client` | Adds a package to the client (use `-w server` for the API)                                                                                       |
