@@ -37,6 +37,12 @@ export function connectToMongo(): Promise<typeof mongoose> {
     return connection;
 }
 
+export async function disconnectFromMongo(): Promise<void> {
+    wasConnected = false;
+    connection = undefined;
+    await mongoose.disconnect();
+}
+
 export function isMongoConnected(): boolean {
     return mongoose.connection.readyState === mongoose.ConnectionStates.connected;
 }
