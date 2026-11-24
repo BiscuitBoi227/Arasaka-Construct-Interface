@@ -11,7 +11,8 @@
     "dev": "netlify dev --filter @aci/client",
     "build": "npm run build -w client",
     "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "seed": "npm run seed -w server"
   },
   "dependencies": {
     "serverless-http": "^4.0.0"
